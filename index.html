@@ -7,7 +7,33 @@
     </head>
     <body>
         <h1>Launch Checklist Form</h1>
-        <div id="missionTarget">
+        <div id="missionTarget">  
+         <script>
+        function retrieveLaunchData() {
+        fetch('https://handlers.education.launchcode.org/static/planets.json').then( function (response) {
+		response.json().then(function (data) {
+			let targets = document.getElementById('missionTarget');
+			let random = Math.round(Math.random() * data.length);
+			let target = data[random];
+
+			targets.innerHTML =
+				`<h2>Mission Destination</h2>
+				<ol>
+				   <li>Name: ${target.name}</li>
+				   <li>Diameter: ${target.diameter}</li>
+				   <li>Star: ${target.stat}</li>
+				   <li>Distance from Earth: ${target.distance}</li>
+				   <li>Number of Moons: ${target.moons}</li>
+				</ol>
+				<img src="${target.image}">`
+
+
+		});
+	});
+
+};
+                            
+            </script>
             <!-- Fetch some planetary data -->
         </div> 
         <div id="launchForm">
